@@ -1,0 +1,56 @@
+body {
+  background-color: #f5f6f8;
+}
+
+.ui.stacked.segment {
+  border: none;
+  box-shadow: none;
+}
+
+.login-actions {
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+#login-column {
+  background-color: #fff;
+  max-width: 480px;
+  box-shadow: 0 7px 10px 0 rgb(0 0 0 / 25%);
+  border: 1px solid rgba(0,0,0,.12);
+  padding: 30px;
+}
+
+.login-helpers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.login-helpers .column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  font-size: .9rem;
+}
+
+.login-helpers,
+.login-helpers .ui.checkbox {
+  font-size: .9rem;
+}
+
+.left {
+  align-items: flex-start;
+}
+
+.right {
+  align-items: flex-end;
+}
+
+#login-button {
+  width: 304px;
+  margin: 0 auto;
+}

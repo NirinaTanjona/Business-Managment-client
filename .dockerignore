@@ -1,0 +1,5 @@
+/node_modules
+.gitignore
+*.md
+build
+npm-debug.log
