@@ -1,24 +1,29 @@
 import { useState } from 'react'
-import { network, auth, logger } from '../../../utils'
-import { Button, Form, Grid, Header, Segment, Checkbox } from 'semantic-ui-react';
-import './SignIn.css'
+import { network, logger } from '../../../utils'
+import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
+import './Signup.css'
+import SetBalance from './SetBalance'
 
-function SignIn() {
+function SignUp() {
 
   const [username, setUsername] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [hasError, setError] = useState<boolean>(false)
+  const [summaryId, setSummaryId] = useState<string>('')
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
 
   const handleSubmit = async () => {
     try {
-      await network.POST_USER(`/sign-in/`, { username, password }).then(response => {
-        auth.setAuth(response.data.token)
+      await network.POST_USER(`/sign-up/`, { username, email, password }).then(response => {
+        setSummaryId(response.data.summaryId)
+        console.log("response: ", response.data.summaryId)
       }).then(() => {
-        window.location.href = '/dashboard'
+        setModalOpen(!modalOpen)
       })
     } catch (e) {
       setError(true)
-      logger.error("Error sign in", e)
+      logger.error("Error in registration", e)
     }
   }
 
@@ -26,15 +31,20 @@ function SignIn() {
     setUsername(event.target.value)
   };
 
+  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value)
+  };
+
   const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value)
   };
+
 
   return (
     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
       <Grid.Column id='login-column'>
         <Header as='h3' style={{ color: '0F1419', marginTop: '10px' }}textAlign='center'>
-          Business managment
+          Create Account
         </Header>
         {hasError && (<span style={{ color: 'red' }}>Invalid username or password.</span>)}
         <Form size='large' onSubmit={() => handleSubmit()}>
@@ -51,6 +61,15 @@ function SignIn() {
           />
           <Form.Input
             fluid
+            icon='email'
+            iconPosition='left'
+            name="email"
+            placeholder='email'
+            value={email}
+            onChange={handleEmail}
+          />
+          <Form.Input
+            fluid
             icon='lock'
             iconPosition='left'
             placeholder='Password'
@@ -59,13 +78,6 @@ function SignIn() {
             name="password"
             onChange={handlePassword}
           />
-            <Form.Field>
-              <div className='login-helpers'>
-                <div className='column left'>
-                  <Checkbox label='Remember me'/>
-                </div>
-              </div>
-            </Form.Field>
             <Button
               id='login-button'
               primary
@@ -77,9 +89,10 @@ function SignIn() {
             </Button>
           </Segment>
         </Form>
+        <SetBalance summaryId={summaryId} modalOpen={modalOpen} setModalOpen={setModalOpen}/ >
       </Grid.Column>
     </Grid >
   )
 }
 
-export default SignIn
+export default SignUp

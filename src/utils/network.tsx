@@ -48,7 +48,7 @@ export const POST = (url: string, data: object | undefined, login?: boolean) => 
 export const POST_USER = (url: string, data: object | undefined, login?: boolean) => {
   return Axios.post(`${BUSINESS_API}${url}`, data, {
       headers: {
-          Accept: 'application/vnd.api+json'
+          Accept: 'application/json'
       }
   })
 }
