@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import { SignIn, SignOut, LandingPage, Dashboard, Trades, Register } from './components/pages';
+import { SignIn, SignOut, LandingPage, Dashboard, Trades, SignUp } from './components/pages';
 import { auth } from './utils';
+
+
 
 function App() {
 
@@ -12,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="sign-up" element={<Register />} />
+          <Route path="sign-up" element={<SignUp />} />
           <Route path="sign-in" element={authenticated ? <Navigate to="/dashboard" /> : <SignIn />} />
           <Route path="dashboard" element={authenticated ? <Dashboard /> : <Navigate to="/" />} />
           <Route path="sign-out" element={authenticated ? <SignOut /> : <Navigate to="/" />} />

@@ -3,10 +3,21 @@ import { logger, network } from '../../../utils';
 import { Link } from 'react-router-dom';
 import Summary from './Applications/SummaryList'
 import AddTrade from './Applications/AddTrade'
+import GettingStarted from './Applications/GettingStarted'
+import UpdateBalance from './Applications/UpdateBalance'
+import { Button } from '@mui/material'
+
+interface data {
+  type: string,
+  id: string,
+  attributes: object
+}
+
 
 function Dashboard() {
 
-  const [ data, setData ] = useState<object>({})
+  const [ data, setData ] = useState<data | undefined>()
+  const [updateBalance, setUpdateBalance ] = useState<boolean>(false)
 
   const getSummaries = async () => {
     try {
@@ -18,6 +29,8 @@ function Dashboard() {
     }
   }
 
+  const handleUpdateBalance = () => setUpdateBalance(prev => !prev)
+
   useEffect(() => {
     getSummaries()
   }, [])
@@ -26,9 +39,12 @@ function Dashboard() {
     <div>
       <Link to="/sign-out" >Sign out</Link><br></br>
       <Link to="/trades" >Trade logs</Link>
+      <Button variant="text" onClick={handleUpdateBalance}>Update balance</Button>
       <h1>You have been authenticated, welcome to the Dashboard page!</h1>
       <AddTrade />
-      <Summary data={data}/>
+      <Summary data={data} />
+      <GettingStarted id = {data?.id} />
+      <UpdateBalance id = {data?.id} updateBalance={updateBalance} setUpdateBalance={setUpdateBalance}/>
     </div>
   )
 }

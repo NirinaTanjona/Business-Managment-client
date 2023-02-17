@@ -3,6 +3,6 @@ import SignOut from './Signin/SignOut'
 import LandingPage from './LandingPage'
 import { Dashboard } from './Dashboard'
 import { Trades } from './Trades'
-import { Register } from './Register'
+import { SignUp } from './LandingPage/Register'
 
-export { SignIn, LandingPage, Dashboard, SignOut, Trades, Register }
+export { SignIn, LandingPage, Dashboard, SignOut, Trades, SignUp }

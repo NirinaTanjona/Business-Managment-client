@@ -1,17 +1,7 @@
 import { useState } from 'react'
-import { network, logger } from '../../../utils'
+import { network, logger } from '../../../../utils'
 import { Button, Form, Segment } from 'semantic-ui-react';
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
-
-interface Props {
-  summaryId: string,
-  modalOpen: boolean,
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>
-}
+import { Box, Modal } from '@mui/material'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -25,19 +15,20 @@ const style = {
   p: 4,
 };
 
-
-const SetBalance: React.FC<Props> = ({summaryId, modalOpen, setModalOpen}) => {
+function GettingStarted({id, updateBalance, setUpdateBalance}:any) {
 
   const [balance, setBalance] = useState<number>(0)
   const [error, setError] = useState<boolean>(false)
 
-  const data = {starting_data: balance}
+
+  const starting_balance_data = {starting_balance: balance}
 
   const handleSubmit = async () => {
     try {
-      await network.PATCH(`/summary/${summaryId}/`, data).then(response => {
-        console.log(response.data)
-        handleClose()
+      await network.PATCH(`/summary/${id}/`, starting_balance_data).then(response => {
+        console.log("starting balance updated!")
+      }).then(() => {
+        setUpdateBalance(false)
       })
     } catch (e) {
       setError(true)
@@ -45,27 +36,17 @@ const SetBalance: React.FC<Props> = ({summaryId, modalOpen, setModalOpen}) => {
     }
   }
 
-  const handleClose = () => {
-    setModalOpen(!modalOpen)
-  }
-
-
-  const handleSetBalance = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBalance = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBalance(event.target.value ? parseFloat(event.target.value) : 0)
   };
+
 
   return (
     <div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={modalOpen}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
+        open={ updateBalance }
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           <Form size='large' onSubmit={() => handleSubmit()}>
@@ -74,7 +55,7 @@ const SetBalance: React.FC<Props> = ({summaryId, modalOpen, setModalOpen}) => {
               fluid
               placeholder='Starting balance'
               value={balance}
-              onChange={handleSetBalance}
+              onChange={handleBalance}
             />
             <Button
               id='login-button'
@@ -94,4 +75,4 @@ const SetBalance: React.FC<Props> = ({summaryId, modalOpen, setModalOpen}) => {
   )
 }
 
-export default SetBalance
+export default GettingStarted

@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import { network, logger } from '../../../utils'
+import { network, logger } from '../../../../utils'
 import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
 import './Signup.css'
-import SetBalance from './SetBalance'
 
 function SignUp() {
 
@@ -10,16 +9,12 @@ function SignUp() {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [hasError, setError] = useState<boolean>(false)
-  const [summaryId, setSummaryId] = useState<string>('')
-  const [modalOpen, setModalOpen] = useState<boolean>(false)
 
   const handleSubmit = async () => {
     try {
       await network.POST_USER(`/sign-up/`, { username, email, password }).then(response => {
-        setSummaryId(response.data.summaryId)
-        console.log("response: ", response.data.summaryId)
-      }).then(() => {
-        setModalOpen(!modalOpen)
+        console.log(response.data.message)
+        window.location.href = '/sign-in'
       })
     } catch (e) {
       setError(true)
@@ -89,7 +84,6 @@ function SignUp() {
             </Button>
           </Segment>
         </Form>
-        <SetBalance summaryId={summaryId} modalOpen={modalOpen} setModalOpen={setModalOpen}/ >
       </Grid.Column>
     </Grid >
   )
