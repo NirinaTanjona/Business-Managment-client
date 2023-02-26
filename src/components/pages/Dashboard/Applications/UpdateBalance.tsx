@@ -15,7 +15,13 @@ const style = {
   p: 4,
 };
 
-function UpdateBalance({updateBalance, setUpdateBalance}:any) {
+interface UpdateBalanceProps {
+  updateBalance: boolean;
+  setUpdateBalance: (value: boolean) => void;
+}
+
+
+function UpdateBalance({updateBalance, setUpdateBalance}:UpdateBalanceProps) {
 
   const [balance, setBalance] = useState<number>(0)
   const [error, setError] = useState<boolean>(false)

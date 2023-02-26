@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material'
@@ -7,8 +7,6 @@ import AddTrade from './Applications/AddTrade'
 import GettingStarted from './Applications/GettingStarted'
 import UpdateBalance from './Applications/UpdateBalance'
 import { SummaryProvider} from './SummaryContext'
-
-
 
 
 function Dashboard() {
