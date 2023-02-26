@@ -1,7 +1,6 @@
 import { useState, useContext } from 'react'
 import { Box, Modal } from '@mui/material'
 import { network, logger } from '../../../../utils'
-import { SummaryType } from '../../../../types'
 import { SummaryContext } from '../SummaryContext'
 
 const style = {
