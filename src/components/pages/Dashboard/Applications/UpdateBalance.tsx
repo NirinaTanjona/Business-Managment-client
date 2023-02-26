@@ -1,6 +1,8 @@
-import { useState } from 'react'
-import { network, logger } from '../../../../utils'
+import { useState, useContext } from 'react'
 import { Box, Modal } from '@mui/material'
+import { network, logger } from '../../../../utils'
+import { SummaryType } from '../../../../types'
+import { SummaryContext } from '../SummaryContext'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -14,17 +16,18 @@ const style = {
   p: 4,
 };
 
-function UpdateBalance({id, updateBalance, setUpdateBalance}:any) {
+function UpdateBalance({updateBalance, setUpdateBalance}:any) {
 
   const [balance, setBalance] = useState<number>(0)
   const [error, setError] = useState<boolean>(false)
+  const summary = useContext(SummaryContext)
 
 
   const starting_balance_data = {starting_balance: balance}
 
   const handleSubmit = async () => {
     try {
-      await network.PATCH(`/summary/${id}/`, starting_balance_data).then(response => {
+      await network.PATCH(`/summary/${summary?.id}/`, starting_balance_data).then(response => {
         console.log("starting balance updated!")
       })
     } catch (e) {

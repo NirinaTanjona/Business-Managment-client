@@ -21,9 +21,10 @@ function AddTrade() {
   const [screenBefore, setScreenBefore] = useState<string>('')
   const [screenAfter, setScreenAfter] = useState<string>('')
   const [tradeNotes, setTradeNotes] = useState<string>('')
-  const [disciplineRating, setDisciplineRating] = useState<Number>()
+  const [disciplineRating, setDisciplineRating] = useState<Number | string>('')
   const [emotion, setEmotion] = useState<string>('')
   const [hasError, setError] = useState<boolean>(false)
+
 
   const tradeData = {
     market: market,
@@ -93,7 +94,7 @@ function AddTrade() {
   };
 
   const handleDisciplineRating = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDisciplineRating(event.target.value ? parseInt(event.target.value): undefined)
+    setDisciplineRating(event.target.value ? parseInt(event.target.value): '')
   };
 
   const handleEmotion = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -215,7 +216,6 @@ function AddTrade() {
         AddTrdade
       </Button>
       </div>
-
     </Box>
   )
 }

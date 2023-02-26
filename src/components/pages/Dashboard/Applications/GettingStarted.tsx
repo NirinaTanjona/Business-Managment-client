@@ -1,11 +1,13 @@
 import Cookies from 'js-cookie'
-import { useState, useEffect } from 'react'
+import { SummaryContext } from '../SummaryContext'
+import { useState, useEffect, useContext } from 'react'
 import UpdateBalance from './UpdateBalance'
 
 
-function GettingStarted({id}:any) {
+function GettingStarted() {
 
   const [showGettingStarted, setShowGettingStarted] = useState<boolean>(false)
+  const summary = useContext(SummaryContext)
 
   useEffect(() => {
     const token = Cookies.get('authToken')
@@ -18,7 +20,7 @@ function GettingStarted({id}:any) {
 
   return (
     <div>
-      <UpdateBalance id={id} updateBalance={showGettingStarted} setUpdateBalance={setShowGettingStarted}/>
+      {summary && <UpdateBalance id={summary.id} updateBalance={showGettingStarted} setUpdateBalance={setShowGettingStarted}/>}
     </div>
 
   )
