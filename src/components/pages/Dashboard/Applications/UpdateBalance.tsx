@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { network, logger } from '../../../../utils'
-import { Button, Form, Segment } from 'semantic-ui-react';
 import { Box, Modal } from '@mui/material'
 
 const style = {
@@ -15,7 +14,7 @@ const style = {
   p: 4,
 };
 
-function GettingStarted({id, updateBalance, setUpdateBalance}:any) {
+function UpdateBalance({id, updateBalance, setUpdateBalance}:any) {
 
   const [balance, setBalance] = useState<number>(0)
   const [error, setError] = useState<boolean>(false)
@@ -27,8 +26,6 @@ function GettingStarted({id, updateBalance, setUpdateBalance}:any) {
     try {
       await network.PATCH(`/summary/${id}/`, starting_balance_data).then(response => {
         console.log("starting balance updated!")
-      }).then(() => {
-        setUpdateBalance(false)
       })
     } catch (e) {
       setError(true)
@@ -40,34 +37,33 @@ function GettingStarted({id, updateBalance, setUpdateBalance}:any) {
     setBalance(event.target.value ? parseFloat(event.target.value) : 0)
   };
 
+  const handleUpdateBalance = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUpdateBalance(!updateBalance)
+  }
+
 
   return (
     <div>
       <Modal
         open={ updateBalance }
+        onClose={handleUpdateBalance}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Form size='large' onSubmit={() => handleSubmit()}>
-          <Segment stacked>
-            <Form.Input
-              fluid
+          <form onSubmit={handleSubmit}>
+            <input
               placeholder='Starting balance'
               value={balance}
               onChange={handleBalance}
             />
-            <Button
+            <button
               id='login-button'
-              primary
-              fluid
-              size='large'
               type='submit'
             >
               Set Balance
-            </Button>
-            </Segment>
-          </Form>
+            </button>
+          </form>
         </Box>
       </Modal>
     </div>
@@ -75,4 +71,4 @@ function GettingStarted({id, updateBalance, setUpdateBalance}:any) {
   )
 }
 
-export default GettingStarted
+export default UpdateBalance
