@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Box, Modal } from '@mui/material'
 import { network, logger } from '../../../../utils'
 import { SummaryContext } from '../SummaryContext'
@@ -23,9 +23,9 @@ interface UpdateBalanceProps {
 
 function UpdateBalance({updateBalance, setUpdateBalance}:UpdateBalanceProps) {
 
-  const [balance, setBalance] = useState<number>(0)
-  const [error, setError] = useState<boolean>(false)
   const summary = useContext(SummaryContext)
+  const [balance, setBalance] = useState<string | undefined>()
+  const [error, setError] = useState<boolean>(false)
 
 
   const starting_balance_data = {starting_balance: balance}
@@ -42,12 +42,16 @@ function UpdateBalance({updateBalance, setUpdateBalance}:UpdateBalanceProps) {
   }
 
   const handleBalance = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setBalance(event.target.value ? parseFloat(event.target.value) : 0)
+    setBalance(event.target.value)
   };
 
   const handleUpdateBalance = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUpdateBalance(!updateBalance)
   }
+
+  useEffect(() => {
+    setBalance(summary?.attributes?.starting_balance)
+  }, [summary?.attributes?.starting_balance])
 
 
   return (
