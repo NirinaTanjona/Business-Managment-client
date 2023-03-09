@@ -55,7 +55,7 @@ export function MessageProvider({ children}:{ children: React.ReactNode }) {
   const initialArgs: MessageType = {
     openAlert: false,
     severity: "success",
-    message: "Initial message"
+    message: ""
   }
 
   const [messageData, dispatch] = useReducer<React.Reducer<MessageType, MessageActionType>>(reducer, initialArgs)

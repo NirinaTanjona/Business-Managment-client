@@ -18,7 +18,7 @@ function SignUp() {
         if (dispatch) {
           dispatch({type: "OPEN_SUCCESS_ALERT", message: response.data.message})
         }
-        // window.location.href = '/sign-in'
+        window.location.href = '/sign-in'
       })
     } catch (e) {
       setError(true)
