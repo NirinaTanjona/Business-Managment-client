@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { SignIn, SignOut, LandingPage, Dashboard, Trades, SignUp } from './components/pages';
+import { MessageProvider } from './components/Message/MessageContext'
 import { auth } from './utils';
 
 
@@ -10,7 +11,7 @@ function App() {
   const [authenticated] = useState<boolean>(auth.isAuth());
 
   return (
-    <>
+    <MessageProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -22,7 +23,7 @@ function App() {
           <Route path="*" element={<SignIn />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </MessageProvider>
   );
 }
 

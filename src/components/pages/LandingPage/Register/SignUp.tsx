@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { network, logger } from '../../../../utils'
 import { FormGroup , FormLabel, TextField, Button, FormControlLabel, Typography } from '@mui/material'
+import { useMessageDispatch } from '../../../Message/MessageContext'
+
 
 function SignUp() {
 
@@ -8,12 +10,15 @@ function SignUp() {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [hasError, setError] = useState<boolean>(false)
+  const dispatch = useMessageDispatch()
 
   const handleSubmit = async () => {
     try {
       await network.POST_USER(`/sign-up/`, { username, email, password }).then(response => {
-        console.log(response.data.message)
-        window.location.href = '/sign-in'
+        if (dispatch) {
+          dispatch({type: "OPEN_SUCCESS_ALERT", message: response.data.message})
+        }
+        // window.location.href = '/sign-in'
       })
     } catch (e) {
       setError(true)

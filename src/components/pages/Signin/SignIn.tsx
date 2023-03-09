@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { network, auth, logger } from '../../../utils'
-import { FormGroup , FormLabel, TextField, Button, FormControlLabel, Typography } from '@mui/material'
+import { FormGroup, TextField, Button, Grid } from '@mui/material'
 import './SignIn.css'
 
 function SignIn() {
@@ -31,42 +31,44 @@ function SignIn() {
   };
 
   return (
-        <form>
-          <FormGroup
-            sx={{
-              maxWidth: 480,
-              padding: 2,
-              borderRadius: 2,
-              border: "1px solid",
-              borderColor: "primary.main"
-            }}
-          >
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          spacing={2}
+          sx={{
+            height: '100vh',
+          }}
+        >
+          <Grid item>
+            <TextField
+              sx={{width: 390}}
+              label="username"
+              name="username"
+              value={username}
+              onChange={handleUsername}
+            />
+          </Grid>
+          <Grid item>
           <TextField
-            sx={{ paddingBottom: 2}}
-            label="username"
-            name="username"
-            placeholder='username'
-            value={username}
-            onChange={handleUsername}
-          />
-          <TextField
-            sx={{ paddingBottom: 2}}
+            sx={{width: 390}}
             label="password"
-            placeholder='Password'
             type='password'
             value={password}
             name="password"
             onChange={handlePassword}
           />
+          </Grid>
+          <Grid item>
             <Button
               onClick={handleSubmit}
               variant="contained"
             >
               Login
             </Button>
-          </FormGroup>
-
-        </form>
+          </Grid>
+        </Grid>
   )
 }
 
