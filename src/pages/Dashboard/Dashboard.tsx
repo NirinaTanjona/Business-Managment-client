@@ -33,7 +33,6 @@ function Dashboard() {
 
   return (
     <SummaryProvider>
-      <Link to="/sign-out" >Sign out</Link><br></br>
       <Link to="/trades" >Trade logs</Link>
       <Button variant="text" onClick={handleUpdateBalance}>Update balance</Button>
       <Button variant="outlined" onClick={toggleDrawer(true)}>Add trade</Button>

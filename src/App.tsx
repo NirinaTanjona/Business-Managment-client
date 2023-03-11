@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { SignIn, SignOut, LandingPage, Dashboard, Trades, SignUp } from './pages';
 import { MessageProvider } from './context/MessageContext'
 import { auth } from './utils';
+import Header from './components/Header'
 
 
 
@@ -13,6 +14,7 @@ function App() {
   return (
     <MessageProvider>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="sign-up" element={<SignUp />} />
