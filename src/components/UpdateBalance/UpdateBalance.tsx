@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react'
 import { Box, Modal } from '@mui/material'
-import { network, logger } from '../../../../utils'
-import { SummaryContext } from '../SummaryContext'
+import { network, logger } from '../../utils'
+import { SummaryContext } from '../../context/SummaryContext'
 
 const style = {
   position: 'absolute' as 'absolute',

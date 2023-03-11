@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import { SignIn, SignOut, LandingPage, Dashboard, Trades, SignUp } from './components/pages';
-import { MessageProvider } from './components/Message/MessageContext'
+import { SignIn, SignOut, LandingPage, Dashboard, Trades, SignUp } from './pages';
+import { MessageProvider } from './context/MessageContext'
 import { auth } from './utils';
 
 

@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material'
-import Summary from './Applications/SummaryList'
-import AddTrade from './Applications/AddTrade'
-import GettingStarted from './Applications/GettingStarted'
+import Summary from '../../components/SummaryList'
+import AddTrade from '../../components/AddTrade'
+import GettingStarted from '../../components/GettingStarted/GettingStarted'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import UpdateBalance from './Applications/UpdateBalance'
-import { SummaryProvider} from './SummaryContext'
+import UpdateBalance from '../../components/UpdateBalance/UpdateBalance'
+import Box from '@mui/material/Box'
+import { SummaryProvider} from '../../context/SummaryContext'
 
 
 function Dashboard() {
@@ -42,8 +43,15 @@ function Dashboard() {
         open={openDrawer}
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
+        PaperProps={{
+          elevation: 0,
+          sx: { width: { xs: 310, sm: 360 }, borderRadius: '10px 0px 0px 10px'}
+        }}
       >
-        <AddTrade />
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2}}>
+          <AddTrade />
+        </Box>
+
       </SwipeableDrawer>
 
       <Summary />

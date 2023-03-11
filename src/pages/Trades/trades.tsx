@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { logger, network } from '../../../utils';
+import { logger, network } from '../../utils';
 import { Link } from 'react-router-dom';
 
 function Trades() {

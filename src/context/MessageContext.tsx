@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from 'react'
 import { AlertColor } from '@mui/material/Alert'
-import Message from './Message'
+import Message from '../components/Message'
 
 
 interface MessageType {

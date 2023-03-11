@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 import { useState, useEffect } from 'react'
-import UpdateBalance from './UpdateBalance'
+import UpdateBalance from '../UpdateBalance/UpdateBalance'
 
 
 function GettingStarted() {

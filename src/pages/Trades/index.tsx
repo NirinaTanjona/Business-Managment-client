@@ -1,3 +1,3 @@
 import Trades from './trades'
 
-export {Trades,}
+export default Trades

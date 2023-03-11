@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { network, logger } from '../../../../utils'
+import { network, logger } from '../../utils'
 import { FormGroup , FormLabel, TextField, Button, FormControlLabel, Typography } from '@mui/material'
-import { useMessageDispatch } from '../../../Message/MessageContext'
+import { useMessageDispatch } from '../../context/MessageContext'
 
 
 function SignUp() {

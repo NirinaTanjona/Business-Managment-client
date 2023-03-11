@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { network, logger } from '../../../../utils'
+import { network, logger } from '../../utils'
 import { TextField, Box, Button, FormControl, Select, InputLabel, MenuItem } from '@mui/material'
 import { SelectChangeEvent } from '@mui/material/Select';
 
@@ -105,18 +105,22 @@ function AddTrade() {
     <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch'},
+        '& .MuiTextField-root': { my: 1, width: '100%'},
       }}
       autoComplete="off"
     >
       <div>
-      <TextField
-        label='Market'
-        placeholder='Ex: EURUSD'
-        value={market}
-        onChange={handleMarket}
-        required
-      />
+        <TextField
+          label='Market'
+          placeholder='Ex: EURUSD'
+          value={market}
+          onChange={handleMarket}
+          size="small"
+          required
+          fullWidth
+          id="fullWidth"
+        />
+
       <FormControl fullWidth>
         <InputLabel id="select-label">Direction</InputLabel>
         <Select
@@ -126,6 +130,7 @@ function AddTrade() {
           label="Direction"
           onChange={handleDirection}
           value={direction}
+          size="small"
         >
           {tradeDirection.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -134,20 +139,25 @@ function AddTrade() {
           ))}
         </Select>
       </FormControl>
+      <FormControl fullWidth>
       <TextField
-        label='Closed position'
-        placeholder='Ex: 0,0'
-        type="number"
-        value={closedPosition}
-        onChange={handleClosedPosition}
-        required
-      />
+          label='Closed position'
+          placeholder='Ex: 0,0'
+          type="number"
+          value={closedPosition}
+          onChange={handleClosedPosition}
+          size="small"
+          required
+        />
+      </FormControl>
+
       <TextField
         label='Entry price'
         placeholder='Ex: 1,05911'
         type="number"
         value={entryPrice}
         onChange={handleEntryPrice}
+        size="small"
         required
       />
       <TextField
@@ -156,6 +166,7 @@ function AddTrade() {
         type="number"
         value={stopLossPrice}
         onChange={handleStopLossPrice}
+        size="small"
         required
       />
       <TextField
@@ -164,6 +175,7 @@ function AddTrade() {
         type="number"
         value={takeProfitPrice}
         onChange={handleTakeProfitPrice}
+        size="small"
       />
       <TextField
         label='Actual exit price'
@@ -171,6 +183,7 @@ function AddTrade() {
         type="number"
         value={actualExitPrice}
         onChange={handleActualExitPrice}
+        size="small"
         required
       />
       <TextField
@@ -179,6 +192,7 @@ function AddTrade() {
         type="url"
         value={screenBefore}
         onChange={handleScreenBefore}
+        size="small"
       />
       <TextField
         label='Screenshot after'
@@ -186,6 +200,7 @@ function AddTrade() {
         type="url"
         value={screenAfter}
         onChange={handleScreenAfter}
+        size="small"
       />
       <TextField
         label='Trade notes'
@@ -193,6 +208,7 @@ function AddTrade() {
         type='textarea'
         value={tradeNotes}
         onChange={handleTradeNotes}
+        size="small"
       />
       <TextField
         label='Discipline rating'
@@ -200,6 +216,7 @@ function AddTrade() {
         type="number"
         value={disciplineRating}
         onChange={handleDisciplineRating}
+        size="small"
       />
       <TextField
         label='Emotional state of mind'
@@ -207,6 +224,7 @@ function AddTrade() {
         type="text"
         value={emotion}
         onChange={handleEmotion}
+        size="small"
       />
 
       <Button

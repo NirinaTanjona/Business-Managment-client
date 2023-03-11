@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { SummaryContext } from '../SummaryContext'
+import { SummaryContext } from '../context/SummaryContext'
 
 const SummaryList = () => {
   const data = useContext(SummaryContext)

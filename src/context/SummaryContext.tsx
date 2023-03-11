@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
-import { logger, network } from '../../../utils';
-import { SummaryType } from '../../../types'
+import { logger, network } from '../utils';
+import { SummaryType } from '../types'
 
 
 export const SummaryContext = createContext<SummaryType | null>(null)
