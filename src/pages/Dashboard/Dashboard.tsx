@@ -8,6 +8,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Box from '@mui/material/Box'
 import Layout from '../../components/Layout'
 import { SummaryProvider} from '../../context/SummaryContext'
+import DailyTrade from '../../components/DailyTrade'
 
 
 function Dashboard() {
@@ -15,9 +16,10 @@ function Dashboard() {
   return (
     <SummaryProvider>
       <Layout>
-      <h1>You have been authenticated, welcome to the Dashboard page!</h1>
-      <Summary />
-      <GettingStarted />
+        <h1>You have been authenticated, welcome to the Dashboard page!</h1>
+        <DailyTrade />
+        <Summary />
+        <GettingStarted />
       </Layout>
     </SummaryProvider>
   )
