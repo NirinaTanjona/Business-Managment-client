@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { logger, network } from '../../utils';
 import { Link } from 'react-router-dom';
+import Layout from '../../components/Layout';
 
 function Trades() {
 
@@ -22,9 +23,9 @@ function Trades() {
 
   return (
     <div>
-      <Link to="/dashboard" >Dashboard</Link>
-      <h1>These are all your trade logs</h1>
-      <pre>{JSON.stringify(trades, null, 2)}</pre>
+      <Layout>
+        <pre>{JSON.stringify(trades, null, 2)}</pre>
+      </Layout>
     </div>
   )
 }

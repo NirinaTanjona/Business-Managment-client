@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
-import { Box, Modal } from '@mui/material'
+import { Box, Modal, Button} from '@mui/material'
 import { network, logger } from '../../utils'
 import { SummaryContext } from '../../context/SummaryContext'
 
@@ -15,16 +15,12 @@ const style = {
   p: 4,
 };
 
-interface UpdateBalanceProps {
-  updateBalance: boolean;
-  setUpdateBalance: (value: boolean) => void;
-}
 
-
-function UpdateBalance({updateBalance, setUpdateBalance}:UpdateBalanceProps) {
+function UpdateBalance() {
 
   const summary = useContext(SummaryContext)
   const [balance, setBalance] = useState<string | undefined>()
+  const [updateBalance, setUpdateBalance ] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
 
 
@@ -45,8 +41,9 @@ function UpdateBalance({updateBalance, setUpdateBalance}:UpdateBalanceProps) {
     setBalance(event.target.value)
   };
 
-  const handleUpdateBalance = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUpdateBalance(!updateBalance)
+
+  const handleUpdateBalance = () => {
+    setUpdateBalance(prev => !prev)
   }
 
   useEffect(() => {
@@ -56,6 +53,7 @@ function UpdateBalance({updateBalance, setUpdateBalance}:UpdateBalanceProps) {
 
   return (
     <div>
+      <Button variant="outlined" onClick={handleUpdateBalance}>Update balance</Button>
       <Modal
         open={ updateBalance }
         onClose={handleUpdateBalance}

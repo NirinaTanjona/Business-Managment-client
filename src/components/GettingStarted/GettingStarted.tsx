@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 import { useState, useEffect } from 'react'
-import UpdateBalance from '../UpdateBalance/UpdateBalance'
+import UpdateBalance from '../SiderLayout/UpdateBalance'
 
 
 function GettingStarted() {
@@ -18,7 +18,7 @@ function GettingStarted() {
 
   return (
     <div>
-      <UpdateBalance updateBalance={showGettingStarted} setUpdateBalance={setShowGettingStarted}/>
+      {/* <UpdateBalance updateBalance={showGettingStarted} setUpdateBalance={setShowGettingStarted}/> */}
     </div>
 
   )
