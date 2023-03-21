@@ -8,7 +8,10 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Box from '@mui/material/Box'
 import Layout from '../../components/Layout'
 import { SummaryProvider} from '../../context/SummaryContext'
-import DailyTrade from '../../components/DailyTrade'
+import WeeklyTrade from '../../components/WeeklyTrade'
+import OverallStat from '../../components/OverallStat'
+import ApexChart from '../../components/ApexChart'
+import FullCalendar from '../../components/FullCalendar'
 
 
 function Dashboard() {
@@ -17,7 +20,13 @@ function Dashboard() {
     <SummaryProvider>
       <Layout>
         <h1>You have been authenticated, welcome to the Dashboard page!</h1>
-        <DailyTrade />
+        <WeeklyTrade />
+        <br/>
+        <OverallStat />
+        <br />
+        <ApexChart />
+        <br />
+        <FullCalendar />
         <Summary />
         <GettingStarted />
       </Layout>

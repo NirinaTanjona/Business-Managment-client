@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const TodaysTrade = {
+const weeklyData = {
   return: "$0",
   trades: 0,
   wins: 0,
@@ -26,13 +26,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const DailyTrade = () => {
+const WeeklyTrade = () => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="spanning table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="left">Today</StyledTableCell>
+            <StyledTableCell align="left">This week</StyledTableCell>
           </TableRow>
           <TableRow>
             <StyledTableCell align="left">Returns</StyledTableCell>
@@ -43,10 +43,10 @@ const DailyTrade = () => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <StyledTableCell align="left">{ TodaysTrade.return }</StyledTableCell>
-            <StyledTableCell align="right">{ TodaysTrade.trades }</StyledTableCell>
-            <StyledTableCell align="right">{ TodaysTrade.wins }</StyledTableCell>
-            <StyledTableCell align="right">{ TodaysTrade.gain }</StyledTableCell>
+            <StyledTableCell align="left">{ weeklyData.return }</StyledTableCell>
+            <StyledTableCell align="right">{ weeklyData.trades }</StyledTableCell>
+            <StyledTableCell align="right">{ weeklyData.wins }</StyledTableCell>
+            <StyledTableCell align="right">{ weeklyData.gain }</StyledTableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -54,4 +54,4 @@ const DailyTrade = () => {
   );
 }
 
-export default DailyTrade
+export default WeeklyTrade

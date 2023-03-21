@@ -3,6 +3,7 @@ export interface TradeType {
   created: string,
   modified: string,
   status: number,
+  balance: string,
   activate_date: string,
   market: string,
   direction: string,
