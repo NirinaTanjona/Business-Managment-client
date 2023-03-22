@@ -12,6 +12,7 @@ import WeeklyTrade from '../../components/WeeklyTrade'
 import OverallStat from '../../components/OverallStat'
 import ApexChart from '../../components/ApexChart'
 import FullCalendar from '../../components/FullCalendar'
+import StatCard from '../../components/StatCards'
 
 
 function Dashboard() {
@@ -20,6 +21,8 @@ function Dashboard() {
     <SummaryProvider>
       <Layout>
         <h1>You have been authenticated, welcome to the Dashboard page!</h1>
+        <StatCard />
+        <br />
         <WeeklyTrade />
         <br/>
         <OverallStat />

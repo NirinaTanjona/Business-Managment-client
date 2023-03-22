@@ -1,15 +1,14 @@
-import React, { useContext } from 'react';
-import Paper from '@mui/material/Paper'
 import ReactApexChart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
-import { SummaryContext } from '../../context/SummaryContext'
+import { useSummary } from '../../context/SummaryContext'
+import Card from '../Card'
 
 
 
 
 const ApexChart = () => {
 
-  const data = useContext( SummaryContext )
+  const data = useSummary()
 
   const balanceList = data ? data.attributes.trades.map(item => parseFloat(item.balance)) : []
   const dateList = data ? data.attributes.trades.map(item => {
@@ -89,9 +88,9 @@ const ApexChart = () => {
     };
 
   return (
-    <Paper variant="outlined" sx={{ p: 2 }}>
+    <Card>
       <ReactApexChart options={chartData.options} series={chartData.series} type="area" height={350} />
-    </Paper>
+    </Card>
   );
 }
 

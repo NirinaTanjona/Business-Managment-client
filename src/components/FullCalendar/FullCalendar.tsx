@@ -1,8 +1,8 @@
-import { useRef, useEffect, useContext, useState} from 'react'
+import { useRef, useEffect, useState} from 'react'
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"
 import { TradeType } from '../../types'
-import { SummaryContext } from '../../context/SummaryContext'
+import { useSummary } from '../../context/SummaryContext'
 
 interface CalendarDataType {
   date: string,
@@ -15,7 +15,7 @@ interface CalendarDataType {
 const FullCalendarLayout = () => {
 
   const calendarRef = useRef<FullCalendar>(null)
-  const data = useContext(SummaryContext)?.attributes.trades
+  const data = useSummary()?.attributes.trades
 
 
   const reducedData: CalendarDataType[] | undefined = data?.reduce((acc: CalendarDataType[], curr: TradeType) => {
