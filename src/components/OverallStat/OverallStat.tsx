@@ -48,10 +48,10 @@ const OverallStat = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="spanning table">
+      <Table aria-label="spanning table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="left">Today</StyledTableCell>
+            <StyledTableCell align="left">Overall stats</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>

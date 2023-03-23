@@ -1,18 +1,14 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom';
-import { Button } from '@mui/material'
-import Summary from '../../components/SummaryList'
-import AddTrade from '../../components/AddTrade'
-import GettingStarted from '../../components/GettingStarted/GettingStarted'
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Box from '@mui/material/Box'
-import Layout from '../../components/Layout'
+import Stack from '@mui/material/Stack'
+import Grid from '@mui/material/Grid'
 import { SummaryProvider} from '../../context/SummaryContext'
-import WeeklyTrade from '../../components/WeeklyTrade'
+import Summary from '../../components/SummaryList'
+import GettingStarted from '../../components/GettingStarted/GettingStarted'
+import Layout from '../../components/Layout'
+import TodaysTrade from '../../components/TodaysTrade'
 import OverallStat from '../../components/OverallStat'
 import ApexChart from '../../components/ApexChart'
 import FullCalendar from '../../components/FullCalendar'
-import StatCard from '../../components/StatCards'
+import StatCards from '../../components/StatCards'
 
 
 function Dashboard() {
@@ -20,18 +16,25 @@ function Dashboard() {
   return (
     <SummaryProvider>
       <Layout>
-        <h1>You have been authenticated, welcome to the Dashboard page!</h1>
-        <StatCard />
+
+          <h1>You have been authenticated, welcome to the Dashboard page!</h1>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <StatCards />
+            </Grid>
+            <Grid item xs={4}>
+              <TodaysTrade />
+              <OverallStat />
+            </Grid>
+            <Grid item xs={8}>
+              <ApexChart />
+              <FullCalendar />
+            </Grid>
+          </Grid>
         <br />
-        <WeeklyTrade />
-        <br/>
-        <OverallStat />
-        <br />
-        <ApexChart />
-        <br />
-        <FullCalendar />
         <Summary />
         <GettingStarted />
+
       </Layout>
     </SummaryProvider>
   )

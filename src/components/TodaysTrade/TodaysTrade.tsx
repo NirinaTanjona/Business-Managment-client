@@ -7,11 +7,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const weeklyData = {
-  return: "$0",
-  trades: 0,
-  wins: 0,
-  gain: "0%"
+const DailyData = {
+  win: 0,
+  loss: 0,
+  avgRisk: '0%',
+  avgReward: '0%',
+  roi: '0%'
 }
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -26,27 +27,27 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const WeeklyTrade = () => {
+const TodaysTrade = () => {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="spanning table">
+      <Table aria-label="spanning table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="left">This week</StyledTableCell>
+            <StyledTableCell align="left">Today's Trade</StyledTableCell>
           </TableRow>
           <TableRow>
-            <StyledTableCell align="left">Returns</StyledTableCell>
-            <StyledTableCell align="right">Trades</StyledTableCell>
-            <StyledTableCell align="right">Wins</StyledTableCell>
+            <StyledTableCell align="left">Trade taken</StyledTableCell>
+            <StyledTableCell align="right">Rewards</StyledTableCell>
+            <StyledTableCell align="right">Risk taken</StyledTableCell>
             <StyledTableCell align="right">Gain%</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
-            <StyledTableCell align="left">{ weeklyData.return }</StyledTableCell>
-            <StyledTableCell align="right">{ weeklyData.trades }</StyledTableCell>
-            <StyledTableCell align="right">{ weeklyData.wins }</StyledTableCell>
-            <StyledTableCell align="right">{ weeklyData.gain }</StyledTableCell>
+            <StyledTableCell align="left">{ DailyData.win } / { DailyData.loss }</StyledTableCell>
+            <StyledTableCell align="right">{ DailyData.avgReward }</StyledTableCell>
+            <StyledTableCell align="right">{ DailyData.avgRisk }</StyledTableCell>
+            <StyledTableCell align="right">{ DailyData.roi }</StyledTableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -54,4 +55,4 @@ const WeeklyTrade = () => {
   );
 }
 
-export default WeeklyTrade
+export default TodaysTrade

@@ -1,13 +1,31 @@
 import Grid from '@mui/material/Grid'
 import SiderLayout from '../SiderLayout'
 
+const styles = {
+  root: {
+    flexGrow: 1,
+    height: '100vh',
+  },
+  sidebar: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    width: '240px',
+  },
+  content: {
+    marginLeft: '256px',
+    marginRight: '16px'
+  }
+}
+
 const Layout = ({ children}:{ children: React.ReactNode }) => {
   return (
-    <Grid container>
-      <Grid item>
+    <Grid container spacing={0} sx={styles.root}>
+      <Grid item sx={styles.sidebar}>
         <SiderLayout />
       </Grid>
-      <Grid item sx={{ pl: '300px' }}>
+      <Grid item xs sx={styles.content}>
         {children}
       </Grid>
     </Grid>

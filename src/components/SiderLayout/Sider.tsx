@@ -33,7 +33,7 @@ const items = [
 
 const Sider = () => {
   return (
-    <Paper sx={{ width: 200, maxWidth: '100%', height: '100vh', position: 'fixed'}}>
+    <Paper sx={{ height: '100vh'}}>
       <MenuList>
         { items.map(item => (
           <MenuItem key={item.title}>
