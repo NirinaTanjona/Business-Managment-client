@@ -1,8 +1,10 @@
-import { useRef, useEffect, useState} from 'react'
+import { useRef, useEffect, useState } from 'react'
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"
+import Card from '../Card'
 import { TradeType } from '../../types'
-import { useSummary } from '../../context/SummaryContext'
+import { network, logger } from '../../utils'
+import { useParams } from 'react-router-dom'
 
 interface CalendarDataType {
   date: string,
@@ -15,10 +17,11 @@ interface CalendarDataType {
 const FullCalendarLayout = () => {
 
   const calendarRef = useRef<FullCalendar>(null)
-  const data = useSummary()?.attributes.trades
+  const [trades , setTrades ] = useState<TradeType[] | null>(null)
+  const { id } = useParams()
 
 
-  const reducedData: CalendarDataType[] | undefined = data?.reduce((acc: CalendarDataType[], curr: TradeType) => {
+  const reducedData: CalendarDataType[] | undefined = trades?.reduce((acc: CalendarDataType[], curr: TradeType) => {
     const date = curr.modified.substring(0, 10);
     const existingItemIndex = acc.findIndex(item => item.date.substring(0, 10) === date);
 
@@ -39,6 +42,13 @@ const FullCalendarLayout = () => {
   }, []);
 
   useEffect(() => {
+    try {
+      network.GET_JSON(`/trade/${id}/get_trades_from_summary/`).then(response => {
+        setTrades(response.data)
+      })
+    } catch (e) {
+      logger.error('Error fetching trades', e)
+    }
 
     if (calendarRef) {
       const calendarApi = calendarRef.current?.getApi()
@@ -64,20 +74,19 @@ const FullCalendarLayout = () => {
       })
       calendarApi?.setOption('timeZone', 'UTC')
     }
-  }, [reducedData])
+  }, [reducedData, id])
 
 
 
   return (
-    <div className="calendar-container">
+    <Card>
       <FullCalendar
-        // {...options}
         ref={calendarRef}
         plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
         events={reducedData}
       />
-    </div>
+    </Card>
   );
 }
 

@@ -27,6 +27,15 @@ export const GET = (url:string) => {
   })
 }
 
+export const GET_JSON = (url:string) => {
+  return Axios.get(`${BUSINESS_API}${url}`, {
+    headers: {
+      Authorization: `Token ${auth_token}`,
+      Accept: 'application/json'
+    }
+  })
+}
+
 export const DELETE = (url:string) => {
   return Axios.delete(`${BUSINESS_API}${url}`, {
     headers: {

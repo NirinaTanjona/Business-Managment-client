@@ -1,34 +1,60 @@
-import Stack from '@mui/material/Stack'
 import Grid from '@mui/material/Grid'
-import { SummaryProvider} from '../../context/SummaryContext'
+import { useParams } from 'react-router-dom'
 import Summary from '../../components/SummaryList'
 import GettingStarted from '../../components/GettingStarted/GettingStarted'
 import Layout from '../../components/Layout'
 import TodaysTrade from '../../components/TodaysTrade'
+import WeeklyTrades from '../../components/WeeklyTrades'
 import OverallStat from '../../components/OverallStat'
 import ApexChart from '../../components/ApexChart'
 import FullCalendar from '../../components/FullCalendar'
 import StatCards from '../../components/StatCards'
+import { useSummaryState, SummaryProvider } from '../../context/SummaryContext'
+import { useEffect } from 'react'
 
 
 function Dashboard() {
 
-  return (
-    <SummaryProvider>
-      <Layout>
+  const setID = useSummaryState()
 
+  const { id } = useParams()
+
+  useEffect(() => {
+    setID(id)
+  })
+
+
+
+  return (
+
+      <Layout>
           <h1>You have been authenticated, welcome to the Dashboard page!</h1>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <StatCards />
             </Grid>
             <Grid item xs={4}>
-              <TodaysTrade />
-              <OverallStat />
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TodaysTrade />
+                </Grid>
+                <Grid item xs={12}>
+                  <WeeklyTrades />
+                </Grid>
+                <Grid item xs={12}>
+                  <OverallStat />
+                </Grid>
+              </Grid>
             </Grid>
             <Grid item xs={8}>
-              <ApexChart />
-              <FullCalendar />
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <ApexChart />
+                </Grid>
+                <Grid item xs={12}>
+                  <FullCalendar />
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         <br />
@@ -36,7 +62,6 @@ function Dashboard() {
         <GettingStarted />
 
       </Layout>
-    </SummaryProvider>
   )
 }
 

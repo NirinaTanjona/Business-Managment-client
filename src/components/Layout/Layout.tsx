@@ -11,10 +11,10 @@ const styles = {
     top: 0,
     left: 0,
     bottom: 0,
-    width: '240px',
+    width: '200px',
   },
   content: {
-    marginLeft: '256px',
+    marginLeft: '216px',
     marginRight: '16px'
   }
 }

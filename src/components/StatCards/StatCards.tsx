@@ -25,6 +25,7 @@ const CardLayout = ({title , value}: {title: string, value: string | undefined})
 const StatCards = () => {
 
   const data = useSummary()
+
   let profitFactor
   if (data) {
     const totalProfits = data.attributes.total_number_of_winning_trades * parseFloat(data.attributes.avg_winning_trade)
@@ -52,7 +53,7 @@ const StatCards = () => {
   return (
     <Grid container direction="row" spacing={2}>
         {dataset.map(item => (
-          <Grid item xs={4}>
+          <Grid item xs={4} key={item.title}>
             <CardLayout title={item.title} value={item.value}/>
           </Grid>
         ))}
